@@ -1,5 +1,7 @@
 import { SearchInput } from './SearchInput';
-import { Constants } from '../common/Constants';
+import { Constants } from '../../common/Constants';
+import { cloudDatabase } from '@kit.CloudFoundationKit';
+import { Article } from '../../models/Article';
 
 @Component
 export struct HomePage {

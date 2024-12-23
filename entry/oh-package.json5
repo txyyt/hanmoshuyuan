@@ -6,7 +6,11 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "@hw-agconnect/auth": "^1.0.2"
-  }
+    "@hw-agconnect/auth": "^1.0.2",
+    "@hw-agconnect/hmcore": "^1.0.2",
+    "@hw-agconnect/cloud": "^1.0.2",
+    "long": "5.2.1"
+  },
+  "devDependencies": {},
+  "dynamicDependencies": {}
 }
-
