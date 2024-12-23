@@ -1,46 +1,40 @@
-// Index.ets
-// 导入页面路由模块
-import { router } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit';
+import { HomePage } from './components/HomePage';
+import { MapPage } from './components/MapPage';
+import { MyPage } from './components/MyPage';
 
 @Entry
 @Component
-struct Index {
-  @State message: string = 'Hello World'
+export struct Index {
+  @State currentIndex: number = 0;
+  private controller: TabsController = new TabsController();
 
   build() {
-    Row() {
-      Column() {
-        Text(this.message)
-          .fontSize(50)
-          .fontWeight(FontWeight.Bold)
-        // 添加按钮，以响应用户点击
-        Button() {
-          Text('Next')
-            .fontSize(30)
-            .fontWeight(FontWeight.Bold)
-        }
-        .type(ButtonType.Capsule)
-        .margin({
-          top: 20
-        })
-        .backgroundColor('#0D9FFB')
-        .width('40%')
-        .height('5%')
-        // 跳转按钮绑定onClick事件，点击时跳转到第二页
-        .onClick(() => {
-          console.info(`Succeeded in clicking the 'Next' button.`)
-          // 跳转到第二页
-          router.pushUrl({ url: 'pages/Second' }).then(() => {
-            console.info('Succeeded in jumping to the second page.')
+    Column() {
+      // 标签内容区域
+      Tabs({
+        barPosition: BarPosition.End,
+        controller: this.controller,
+        index: this.currentIndex
+      }) {
+        // 首页内容
+        TabContent() {
+          HomePage(); // 使用自定义组件
+        }.tabBar({ text: '首页' });
 
-          }).catch((err: BusinessError) => {
-            console.error(`Failed to jump to the second page. Code is ${err.code}, message is ${err.message}`)
-          })
-        })
+        // 地图内容
+        TabContent() {
+          MapPage(); // 使用自定义组件
+        }.tabBar({ text: '地图' });
+
+        // 我的内容
+        TabContent() {
+          MyPage(); // 使用自定义组件
+        }.tabBar({ text: '我的' });
       }
-      .width('100%')
+      .barHeight(50) // 设置底部 TabBar 高度
+      .animationDuration(300); // Tab 切换动画持续时间
     }
-    .height('100%')
+    .width('100%')
+    .justifyContent(FlexAlign.Start)
   }
 }

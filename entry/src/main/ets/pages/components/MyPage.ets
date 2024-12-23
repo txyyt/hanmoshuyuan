@@ -1,7 +1,3 @@
-import { SearchInput } from './components/SearchInput';
-import { Constants } from './common/Constants';
-
-@Entry
 @Component
 export struct MyPage {
   build() {
@@ -9,7 +5,7 @@ export struct MyPage {
       Text('这是我的页面内容')
         .fontSize(18)
         .fontWeight(FontWeight.Bold)
-        .margin({ top: 0 })
+        .margin({ top: 20 });
     }
   }
 }
